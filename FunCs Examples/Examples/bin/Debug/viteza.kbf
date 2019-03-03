@@ -1,0 +1,29 @@
+root n11
+question n11 Viteza isi pastreaza directia?
+answers n11 da nu nu_stiu
+rule when n11 if nu then n21
+rule when n11 if da then n22
+rule when n11 if nu_stiu then n23
+conclusion n23 Informatii insuficiente.
+question n21 Modulul vectorului viteza este constant?
+answers n21 da nu
+rule when n21 if nu then n31
+rule when n21 if da then n32
+conclusion n31 Miscare curbilinie neuniforma.
+conclusion n32 Miscare curbilinie uniforma.
+question n22 Vectorul acceleratie este nul?
+answers n22 da nu
+rule when n22 if nu then n33
+rule when n22 if da then n34
+conclusion n34 Miscare rectilinie uniforma.
+question n33 Acceleratie constanta?
+answers n33 da nu
+rule when n33 if nu then n41
+rule when n33 if da then n42
+conclusion n41 Miscare rectilinie neuniforma.
+question n42 Acceleratie pozitiva?
+answers n42 da nu
+rule when n42 if nu then n51
+rule when n42 if da then n52
+conclusion n51 Miscare rectilinie uniform incetinita.
+conclusion n52 Miscare rectilinie uniform accelerata.

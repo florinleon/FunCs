@@ -1,0 +1,307 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FunCs</name>
+    </assembly>
+    <members>
+        <member name="T:FunCs.ExpertMatchF">
+            <summary>
+            The class that implements different pattern matching cases on single lists or lists of facts. General pattern matching is performed using the Rete algorithm implemented in the Clips expert system tool.
+            </summary>
+        </member>
+        <member name="M:FunCs.ExpertMatchF.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the ExpertMatchF class.
+            </summary>
+            <param name="list">A list of string items that will be used for pattern matching. To increase clarity and to stress that it is a list, it is recommended to enclose the items within square brackets</param>
+        </member>
+        <member name="M:FunCs.ExpertMatchF.#ctor(System.Collections.Generic.List{System.String})">
+            <summary>
+            Initializes a new instance of the ExpertMatchF class.
+            </summary>
+            <param name="factList">A list of facts that will be used for pattern matching, where each fact is a list of string items. The facts are general and should not contain square brackets.</param>
+        </member>
+        <member name="M:FunCs.ExpertMatchF.MatchListEmpty">
+            <summary>
+            Returns true if the list is empty.
+            </summary>
+        </member>
+        <member name="M:FunCs.ExpertMatchF.MatchListHeadTail(System.String@,System.Collections.Generic.List{System.String}@)">
+            <summary>
+            Identifies the first item of the list and the rest of the list. It returns false if the list is empty.
+            </summary>
+            <param name="head">The head of the list, i.e. the first item</param>
+            <param name="tail">The rest of the list, starting with the second item</param>
+        </member>
+        <member name="M:FunCs.ExpertMatchF.MatchListGeneral(System.String,System.Collections.Generic.Dictionary{System.String,System.String}@)">
+            <summary>
+            Matches an arbitrary pattern on the list of facts. It returns false if the pattern cannot be matched on the facts.
+            </summary>
+            <param name="pattern">A pattern containing items to be matched and variables, identified by ? for a single word or $? for multiple words, e.g. ?a or $?b. At least one variable must be named in the pattern</param>
+            <param name="results">A dictionary that contains the values of the variables, e.g. results["?a"] contains the value of that variable after the pattern matching</param>
+        </member>
+        <member name="M:FunCs.ExpertMatchF.MatchMultiple(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.String}}@)">
+            <summary>
+            Matches arbitrary patterns on the list of facts. It returns false if the patterns cannot be matched on the facts.
+            </summary>
+            <param name="patterns">A list of patterns containing items to be matched and variables, identified by ? for a single word or $? for multiple words, e.g. ?a or $?b. At least one variable must be named in the patterns</param>
+            <param name="results">A dictionary that contains the values of the variables, e.g. results["?a"] contains the value of that variable after the pattern matching</param>
+        </member>
+        <member name="M:FunCs.ExpertMatchF.MatchMultiple(System.Collections.Generic.List{System.String},System.String,System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.String}}@)">
+            <summary>
+            Matches arbitrary patterns on the list of facts. It returns false if the pattern cannot be matched on the facts.
+            </summary>
+            <param name="patterns">A list of patterns containing items to be matched and variables, identified by ? for a single word or $? for multiple words, e.g. ?a or $?b. At least one variable must be named in the patterns</param>
+            <param name="constraints">A logical expression which contains the conditions that the matched variable values must satisfy. The Clips language syntax and operators are used to describe the constraints</param>
+            <param name="results">A dictionary that contains the values of the variables, e.g. results["?a"] contains the value of that variable after the pattern matching</param>
+        </member>
+        <member name="T:FunCs.ExpertMatchF`1">
+            <summary>
+            The class that implements pattern matching on options.
+            </summary>
+        </member>
+        <member name="M:FunCs.ExpertMatchF`1.#ctor(FunCs.OptionF{`0})">
+            <summary>
+            Initializes a new instance of the ExpertMatchF class.
+            </summary>
+            <param name="option">An option object that will be used for pattern matching</param>
+        </member>
+        <member name="M:FunCs.ExpertMatchF`1.MatchOptionSome(`0@)">
+            <summary>
+            Returns true if the option contains a value and false otherwise.
+            </summary>
+            <param name="some">The value of the option</param>
+        </member>
+        <member name="M:FunCs.ExpertMatchF`1.MatchOptionNone">
+            <summary>
+            Returns true if the option does not contain a value and false otherwise.
+            </summary>
+        </member>
+        <member name="T:FunCs.IntF">
+            <summary>
+            Represents an immutable 32-bit signed integer.
+            </summary>
+        </member>
+        <member name="P:FunCs.IntF.Value">
+            <summary>
+            The read-only int value.
+            </summary>
+        </member>
+        <member name="M:FunCs.IntF.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the IntF structure.
+            </summary>
+            <param name="value">The integer value used for initialization</param>
+        </member>
+        <member name="M:FunCs.IntF.op_Implicit(FunCs.IntF)~System.Int32">
+            <summary>
+            IntF can be implicitly converted to int so that it can be used for all the operations defined for int.
+            </summary>
+        </member>
+        <member name="M:FunCs.IntF.ToString">
+            <summary>
+            Converts the numeric value of this instance to its equivalent string representation.
+            </summary>
+        </member>
+        <member name="T:FunCs.DoubleF">
+            <summary>
+            Represents an immutable double-precision floating-point number.
+            </summary>
+        </member>
+        <member name="P:FunCs.DoubleF.Value">
+            <summary>
+            The read-only double value.
+            </summary>
+        </member>
+        <member name="M:FunCs.DoubleF.#ctor(System.Double)">
+            <summary>
+            Initializes a new instance of the DoubleF structure.
+            </summary>
+            <param name="value">The real value used for initialization</param>
+        </member>
+        <member name="M:FunCs.DoubleF.op_Implicit(FunCs.DoubleF)~System.Double">
+            <summary>
+            DoubleF can be implicitly converted to double so that it can be used for all the operations defined for double.
+            </summary>
+        </member>
+        <member name="M:FunCs.DoubleF.ToString">
+            <summary>
+            Converts the numeric value of this instance to its equivalent string representation.
+            </summary>
+        </member>
+        <member name="M:FunCs.ListF.ToIntEnumF(System.String)">
+            <summary>
+            Converts a string that represents a list of integers into the corresponding IEnumerable(int).
+            </summary>
+        </member>
+        <member name="M:FunCs.ListF.ToDoubleEnumF(System.String)">
+            <summary>
+            Converts a string that represents a list of real numbers into the corresponding IEnumerable(double).
+            </summary>
+        </member>
+        <member name="M:FunCs.ListF.ToStringEnumF(System.String,System.Char)">
+            <summary>
+            Converts a string that represents a list of strings into the corresponding IEnumerable(string).
+            </summary>
+            <param name="separator">A separator used to split the list</param>
+        </member>
+        <member name="M:FunCs.ListF.ToStringF(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Converts the collection of integers to a string representation.
+            </summary>
+        </member>
+        <member name="M:FunCs.ListF.ToStringF(System.Collections.Generic.IEnumerable{System.Double},System.Int32)">
+            <summary>
+            Converts the collection of doubles to a string representation.
+            </summary>
+            <param name="noDecimals">The number of decimals places to be used when formatting the collection elements</param>
+        </member>
+        <member name="M:FunCs.ListF.ToStringF(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Converts the collection of strings to a string representation.
+            </summary>
+        </member>
+        <member name="M:FunCs.ListF.MatchF(System.Collections.Generic.IEnumerable{System.Int32},System.Int32@,System.Collections.Generic.IEnumerable{System.Int32}@)">
+            <summary>
+            Identifies the first item of the list and the rest of the list. It returns false if the list is empty.
+            </summary>
+            <param name="head">The head of the list, i.e. the first item</param>
+            <param name="tail">The rest of the list, starting with the second item</param>
+        </member>
+        <member name="M:FunCs.ListF.MatchF(System.Collections.Generic.IEnumerable{System.Double},System.Double@,System.Collections.Generic.IEnumerable{System.Double}@)">
+            <summary>
+            Identifies the first item of the list and the rest of the list. It returns false if the list is empty.
+            </summary>
+            <param name="head">The head of the list, i.e. the first item</param>
+            <param name="tail">The rest of the list, starting with the second item</param>
+        </member>
+        <member name="M:FunCs.ListF.MatchF(System.Collections.Generic.IEnumerable{System.String},System.String@,System.Collections.Generic.IEnumerable{System.String}@)">
+            <summary>
+            Identifies the first item of the list and the rest of the list. It returns false if the list is empty.
+            </summary>
+            <param name="head">The head of the list, i.e. the first item</param>
+            <param name="tail">The rest of the list, starting with the second item</param>
+        </member>
+        <member name="M:FunCs.ListF.MatchF(System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            Matches an empty pattern on the list.
+            </summary>
+            <param name="pattern">A pattern containing items to be matched</param>
+        </member>
+        <member name="M:FunCs.ListF.MatchF(System.Collections.Generic.IEnumerable{System.String},System.String,System.String@)">
+            <summary>
+            Matches an arbitrary pattern on the list. It returns false if the pattern cannot be matched.
+            </summary>
+            <param name="pattern">A pattern with one variable</param>
+            <param name="var1">The value of the first variable after pattern matching</param>
+        </member>
+        <member name="M:FunCs.ListF.MatchF(System.Collections.Generic.IEnumerable{System.String},System.String,System.String@,System.String@)">
+            <summary>
+            Matches an arbitrary pattern on the list. It returns false if the pattern cannot be matched.
+            </summary>
+            <param name="pattern">A pattern with two variables</param>
+            <param name="var1">The value of the first variable after pattern matching</param>
+            <param name="var2">The value of the second variable after pattern matching</param>
+        </member>
+        <member name="M:FunCs.ListF.MatchF(System.Collections.Generic.IEnumerable{System.String},System.String,System.String@,System.String@,System.String@)">
+            <summary>
+            Matches an arbitrary pattern on the list. It returns false if the pattern cannot be matched.
+            </summary>
+            <param name="pattern">A pattern with three variables</param>
+            <param name="var1">The value of the first variable after pattern matching</param>
+            <param name="var2">The value of the second variable after pattern matching</param>
+            <param name="var3">The value of the third variable after pattern matching</param>
+        </member>
+        <member name="M:FunCs.ListF.MatchF(System.Collections.Generic.IEnumerable{System.String},System.String,System.String@,System.String@,System.String@,System.String@)">
+            <summary>
+            Matches an arbitrary pattern on the list. It returns false if the pattern cannot be matched.
+            </summary>
+            <param name="pattern">A pattern with four variables</param>
+            <param name="var1">The value of the first variable after pattern matching</param>
+            <param name="var2">The value of the second variable after pattern matching</param>
+            <param name="var3">The value of the third variable after pattern matching</param>
+            <param name="var4">The value of the fourth variable after pattern matching</param>
+        </member>
+        <member name="T:FunCs.OptionF`1">
+            <summary>
+            The option type is used when an actual value may not exist. An option has an underlying type and can hold a value of that type, i.e. Some(value), or it may contain no value, i.e. None.
+            </summary>
+        </member>
+        <member name="M:FunCs.OptionF`1.Some(`0)">
+            <summary>
+            Creates an option that has a given value.
+            </summary>
+            <param name="value">A non-null value</param>
+        </member>
+        <member name="M:FunCs.OptionF`1.None">
+            <summary>
+            Creates an option with no value.
+            </summary>
+        </member>
+        <member name="M:FunCs.OptionF`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+        </member>
+        <member name="P:FunCs.OptionF`1.IsSome">
+            <summary>
+            Returns true if the option has a value and false if it has no value.
+            </summary>
+        </member>
+        <member name="P:FunCs.OptionF`1.IsNone">
+            <summary>
+            Returns true if the option has no value and false if it has a value.
+            </summary>
+        </member>
+        <member name="P:FunCs.OptionF`1.Value">
+            <summary>
+            Returns the value of the option. It throws an exception if the option has no value.
+            </summary>
+        </member>
+        <member name="M:FunCs.OptionF`1.ToString">
+            <summary>
+            Converts the option to a string representation: Some(value) or None.
+            </summary>
+        </member>
+        <member name="M:FunCs.OptionF`1.Equals(System.Object)">
+            <summary>
+            Determines whether the specified option object is equal to the current option object.
+            </summary>
+        </member>
+        <member name="M:FunCs.OptionF`1.Select``1(System.Func{`0,``0})">
+            <summary>
+            Projects the current type of option into a new type of option. An equivalent name in other functional programming languages is Map.
+            </summary>
+            <typeparam name="R">The type of the option returned by the transform function.</typeparam>
+            <param name="f">A transform function to apply to the current option.</param>
+        </member>
+        <member name="M:FunCs.OptionF`1.SelectMany``1(System.Func{`0,FunCs.OptionF{``0}})">
+            <summary>
+            Projects the current type of option into a new type of option and flattens the result. An equivalent name in other functional programming languages is Bind.
+            </summary>
+            <typeparam name="R">The type of the option returned by the transform function.</typeparam>
+            <param name="f">A transform function to apply to the current option.</param>
+        </member>
+        <member name="M:FunCs.OptionF`1.GetHashCode">
+            <summary>
+            Returns the hash code of the current option object.
+            </summary>
+        </member>
+        <member name="M:FunCs.OptionExtensionMethods.WhereSome``1(System.Collections.Generic.IEnumerable{FunCs.OptionF{``0}})">
+            <summary>
+            Filters a sequence of OptionF objects and returns the list of values of the objects which are Some.
+            </summary>
+        </member>
+        <member name="M:FunCs.OptionExtensionMethods.MatchSomeF``1(FunCs.OptionF{``0},``0@)">
+            <summary>
+            Returns true if the option contains a value and false otherwise.
+            </summary>
+            <param name="some">The value of the option</param>
+        </member>
+        <member name="M:FunCs.OptionExtensionMethods.MatchNoneF``1(FunCs.OptionF{``0})">
+            <summary>
+            Returns true if the option does not contain a value and false otherwise.
+            </summary>
+        </member>
+    </members>
+</doc>
