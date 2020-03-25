@@ -77,56 +77,60 @@
             Returns true if the option does not contain a value and false otherwise.
             </summary>
         </member>
-        <member name="T:FunCs.IntF">
+        <member name="M:FunCs.LinqExtensions.Map``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
             <summary>
-            Represents an immutable 32-bit signed integer.
+            Projects each element of a sequence into a new form (Linq Select).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FunCs.LinqExtensions.Map``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,``1})">
+            <summary>
+            Projects each element of a sequence into a new form by incorporating the element's index (Linq Select).
             </summary>
         </member>
-        <member name="P:FunCs.IntF.Value">
+        <member name="M:FunCs.LinqExtensions.Bind``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}})">
             <summary>
-            The read-only int value.
+            Projects each element of a sequence to an IEnumerable and flattens the resulting sequences into one sequence (Linq SelectMany).
             </summary>
         </member>
-        <member name="M:FunCs.IntF.#ctor(System.Int32)">
+        <member name="M:FunCs.LinqExtensions.Bind``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Collections.Generic.IEnumerable{``1}})">
             <summary>
-            Initializes a new instance of the IntF structure.
-            </summary>
-            <param name="value">The integer value used for initialization</param>
-        </member>
-        <member name="M:FunCs.IntF.op_Implicit(FunCs.IntF)~System.Int32">
-            <summary>
-            IntF can be implicitly converted to int so that it can be used for all the operations defined for int.
+            Projects each element of a sequence to an IEnumerable, and flattens the resulting sequences into one sequence. The index of each source element is used in the projected form of that element (Linq SelectMany).
             </summary>
         </member>
-        <member name="M:FunCs.IntF.ToString">
+        <member name="M:FunCs.LinqExtensions.Bind``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
             <summary>
-            Converts the numeric value of this instance to its equivalent string representation.
+            Projects each element of a sequence to an IEnumerable, flattens the resulting sequences into one sequence, and invokes a result selector function on each element therein (Linq SelectMany).
             </summary>
         </member>
-        <member name="T:FunCs.DoubleF">
+        <member name="M:FunCs.LinqExtensions.Bind``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
             <summary>
-            Represents an immutable double-precision floating-point number.
+            Projects each element of a sequence to an IEnumerable, flattens the resulting sequences into one sequence, and invokes a result selector function on each element therein. The index of each source element is used in the intermediate projected form of that element (Linq SelectMany).
             </summary>
         </member>
-        <member name="P:FunCs.DoubleF.Value">
+        <member name="M:FunCs.LinqExtensions.Reduce``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})">
             <summary>
-            The read-only double value.
+            Applies an accumulator function over a sequence (Linq Aggregate).
             </summary>
         </member>
-        <member name="M:FunCs.DoubleF.#ctor(System.Double)">
+        <member name="M:FunCs.LinqExtensions.Reduce``2(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1})">
             <summary>
-            Initializes a new instance of the DoubleF structure.
-            </summary>
-            <param name="value">The real value used for initialization</param>
-        </member>
-        <member name="M:FunCs.DoubleF.op_Implicit(FunCs.DoubleF)~System.Double">
-            <summary>
-            DoubleF can be implicitly converted to double so that it can be used for all the operations defined for double.
+            Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value (Linq Aggregate).
             </summary>
         </member>
-        <member name="M:FunCs.DoubleF.ToString">
+        <member name="M:FunCs.LinqExtensions.Reduce``3(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1},System.Func{``1,``2})">
             <summary>
-            Converts the numeric value of this instance to its equivalent string representation.
+            Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value, and the specified function is used to select the result value (Linq Aggregate).
+            </summary>
+        </member>
+        <member name="M:FunCs.LinqExtensions.Filter``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Filters a sequence of values based on a predicate (Linq Where).
+            </summary>
+        </member>
+        <member name="M:FunCs.LinqExtensions.Filter``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Boolean})">
+            <summary>
+            Filters a sequence of values based on a predicate. Each element's index is used in the logic of the predicate function (Linq Where).
             </summary>
         </member>
         <member name="M:FunCs.ListF.ToIntEnumF(System.String)">

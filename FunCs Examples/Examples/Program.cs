@@ -26,17 +26,14 @@ namespace FunCsExamples
             MatchMultiple.Ex1Kinship(); WriteLine("\r\n");
             MatchMultiple.Ex2Cousins(); WriteLine("\r\n");
             MatchMultiple.Ex3Queens4(); WriteLine("\r\n");
-            MatchMultiple.Ex4Queens8(); WriteLine("\r\n");
+            //MatchMultiple.Ex4Queens8(); WriteLine("\r\n");
 
             Options.Ex1SomeNone(); WriteLine("\r\n");
             Options.Ex2List(); WriteLine("\r\n");
-            Options.Ex3Select(); WriteLine("\r\n");
+            Options.Ex3Map(); WriteLine("\r\n");
 
             MatchOption.Ex1(); WriteLine("\r\n");
-            MatchOption.Ex2ExtensionMethod(); WriteLine("\r\n");
-
-            Immutables.Ex1(); WriteLine("\r\n");
-            Immutables.Ex2();
+            MatchOption.Ex2ExtensionMethod();
         }
     }
 }

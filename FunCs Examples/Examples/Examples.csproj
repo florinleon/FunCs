@@ -33,9 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FunCs, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="FunCs, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\FunCs+CosturaFody\bin\Release\FunCs.dll</HintPath>
+      <HintPath>..\..\FunCs Dll\FunCs.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Immutables.cs" />
     <Compile Include="MatchList.cs" />
     <Compile Include="MatchMultiple.cs" />
     <Compile Include="MatchOption.cs" />

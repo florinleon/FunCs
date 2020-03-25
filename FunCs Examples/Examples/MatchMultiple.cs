@@ -34,10 +34,11 @@ namespace FunCsExamples
 
             var em = new ExpertMatchF(lines.ToList<string>());
 
-            var patterns = new List<string>();
-
-            patterns.Add("father ?f ?c");
-            patterns.Add("mother ?m ?c");
+            var patterns = new List<string>
+            {
+                "father ?f ?c",
+                "mother ?m ?c"
+            };
 
             if (em.MatchMultiple(patterns, out var matches))
             {
@@ -99,9 +100,13 @@ namespace FunCsExamples
         {
             var em = new ExpertMatchF("n 1 2 3 4");
 
-            var patterns = new List<string> { "n $? ?row $?", "n $? ?col $?" };
+            var patterns = new List<string>
+            {
+                "n $? ?row $?",
+                "n $? ?col $?"
+            };
 
-            List<string> queens = new List<string>();
+            var queens = new List<string>();
 
             if (em.MatchMultiple(patterns, out var matchList))
             {
@@ -145,9 +150,13 @@ namespace FunCsExamples
         {
             var em = new ExpertMatchF("n 1 2 3 4 5 6 7 8");
 
-            var patterns = new List<string> { "n $? ?row $?", "n $? ?col $?" };
+            var patterns = new List<string>
+            {
+                "n $? ?row $?",
+                "n $? ?col $?"
+            };
 
-            List<string> queens = new List<string>();
+            var queens = new List<string>();
 
             if (em.MatchMultiple(patterns, out var matchList))
             {

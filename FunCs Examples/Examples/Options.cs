@@ -34,9 +34,9 @@ namespace FunCsExamples
         public static void Ex2List()
         {
             var l1 = "[ 1 2 2.5 abc -5 14 ]".ToStringEnumF()
-                .Select(x => ToNatural(x))
-                .Where(x => x.IsSome)
-                .Select(x => x.Value);
+                .Map(x => ToNatural(x))
+                .Filter(x => x.IsSome)
+                .Map(x => x.Value);
 
             WriteLine(l1.ToStringF());
 
@@ -49,23 +49,23 @@ namespace FunCsExamples
             var o3 = OptionF<OptionF<int>>.Some(o1);
             WriteLine(o3);
 
-            var o4 = o3.SelectMany((OptionF<int> x) => x);
+            var o4 = o3.Bind((OptionF<int> x) => x);
             WriteLine(o4.ToStringF()); // [ 1 ]
 
             var l2 = new OptionF<int>[] { o1, o2, o1, o2 }.AsEnumerable();
-            var l3 = l2.Where(x => x.IsSome).Select(x => x.Value); // [ 1 1 ]
+            var l3 = l2.Filter(x => x.IsSome).Map(x => x.Value); // [ 1 1 ]
 
             WriteLine(l3.ToStringF());
         }
 
-        public static void Ex3Select()
+        public static void Ex3Map()
         {
             var os1 = StringNotNumber("abc");
-            var l = os1.Select(x => x.Length);
+            var l = os1.Map(x => x.Length);
             WriteLine($"{os1} -> {l}");
 
             os1 = StringNotNumber("123");
-            l = os1.Select(x => x.Length);
+            l = os1.Map(x => x.Length);
             WriteLine($"{os1} -> {l}");
         }
 

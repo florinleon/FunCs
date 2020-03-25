@@ -39,7 +39,7 @@ namespace FunCsExamples
             if (em.MatchListHeadTail(out string head, out List<string> tail))
             {
                 WriteLine(head);
-                var cc = tail.Select(x => Convert.ToInt32(x));
+                var cc = tail.Map(x => Convert.ToInt32(x));
                 WriteLine(cc.ToStringF());
             }
 
@@ -48,7 +48,7 @@ namespace FunCsExamples
             if (em.MatchListGeneral("[ ?head ? $?rest ? ?last ]", out var matches))
             {
                 WriteLine(matches["?head"]);
-                var restList = matches["$?rest"].Split().Select(x => Convert.ToInt32(x));
+                var restList = matches["$?rest"].Split().Map(x => Convert.ToInt32(x));
                 WriteLine(restList.ToStringF());
                 WriteLine(matches["?last"]);
             }
@@ -87,7 +87,7 @@ namespace FunCsExamples
             if (listS.MatchF("[ ?head ? $?rest ? ?last ]", out var head, out var rest, out var last))
             {
                 WriteLine(head);
-                WriteLine(rest.Split().Select(a => Convert.ToInt32(a)).ToStringF());
+                WriteLine(rest.Split().Map(a => Convert.ToInt32(a)).ToStringF());
                 WriteLine(last);
             }
 
