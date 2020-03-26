@@ -272,16 +272,16 @@
             Determines whether the specified option object is equal to the current option object.
             </summary>
         </member>
-        <member name="M:FunCs.OptionF`1.Select``1(System.Func{`0,``0})">
+        <member name="M:FunCs.OptionF`1.Map``1(System.Func{`0,``0})">
             <summary>
-            Projects the current type of option into a new type of option. An equivalent name in other functional programming languages is Map.
+            Projects the current type of option into a new type of option (Linq Select).
             </summary>
             <typeparam name="R">The type of the option returned by the transform function.</typeparam>
             <param name="f">A transform function to apply to the current option.</param>
         </member>
-        <member name="M:FunCs.OptionF`1.SelectMany``1(System.Func{`0,FunCs.OptionF{``0}})">
+        <member name="M:FunCs.OptionF`1.Bind``1(System.Func{`0,FunCs.OptionF{``0}})">
             <summary>
-            Projects the current type of option into a new type of option and flattens the result. An equivalent name in other functional programming languages is Bind.
+            Projects the current type of option into a new type of option and flattens the result (Linq SelectMany).
             </summary>
             <typeparam name="R">The type of the option returned by the transform function.</typeparam>
             <param name="f">A transform function to apply to the current option.</param>
@@ -291,9 +291,9 @@
             Returns the hash code of the current option object.
             </summary>
         </member>
-        <member name="M:FunCs.OptionExtensionMethods.WhereSome``1(System.Collections.Generic.IEnumerable{FunCs.OptionF{``0}})">
+        <member name="M:FunCs.OptionExtensionMethods.FilterSome``1(System.Collections.Generic.IEnumerable{FunCs.OptionF{``0}})">
             <summary>
-            Filters a sequence of OptionF objects and returns the list of values of the objects which are Some.
+            Filters a sequence of OptionF objects and returns the list of values of the objects which are Some (Linq Where).
             </summary>
         </member>
         <member name="M:FunCs.OptionExtensionMethods.MatchSomeF``1(FunCs.OptionF{``0},``0@)">

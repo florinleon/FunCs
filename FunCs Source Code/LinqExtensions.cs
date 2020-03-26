@@ -15,6 +15,12 @@ namespace FunCs
             return source.Select(selector);
         }
 
+//https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable.select?view=netframework-4.8#definition
+//public static System.Collections.Generic.IEnumerable<TResult> Select<TSource,TResult> (this System.Collections.Generic.IEnumerable<TSource> source, 
+//	Func<TSource,int,TResult> selector);
+//Select<TSource,TResult>(IEnumerable<TSource>, Func<TSource,Int32,TResult>)
+//Select<TSource,TResult>(IEnumerable<TSource>, Func<TSource,TResult>)
+
         /// <summary>
         /// Projects each element of a sequence into a new form by incorporating the element's index (Linq Select).
         /// </summary>

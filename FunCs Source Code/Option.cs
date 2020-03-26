@@ -126,11 +126,11 @@ namespace FunCs
         }
 
         /// <summary>
-        /// Projects the current type of option into a new type of option. An equivalent name in other functional programming languages is Map.
+        /// Projects the current type of option into a new type of option (Linq Select).
         /// </summary>
         /// <typeparam name="R">The type of the option returned by the transform function.</typeparam>
         /// <param name="f">A transform function to apply to the current option.</param>
-        public OptionF<R> Select<R>(Func<T, R> f)
+        public OptionF<R> Map<R>(Func<T, R> f)
         {
             if (this.IsNone)
                 return OptionF<R>.None();
@@ -139,11 +139,11 @@ namespace FunCs
         }
 
         /// <summary>
-        /// Projects the current type of option into a new type of option and flattens the result. An equivalent name in other functional programming languages is Bind.
+        /// Projects the current type of option into a new type of option and flattens the result (Linq SelectMany).
         /// </summary>
         /// <typeparam name="R">The type of the option returned by the transform function.</typeparam>
         /// <param name="f">A transform function to apply to the current option.</param>
-        public OptionF<R> SelectMany<R>(Func<T, OptionF<R>> f)
+        public OptionF<R> Bind<R>(Func<T, OptionF<R>> f)
         {
             if (this.IsNone)
                 return OptionF<R>.None();
@@ -163,11 +163,11 @@ namespace FunCs
     public static class OptionExtensionMethods
     {
         /// <summary>
-        /// Filters a sequence of OptionF objects and returns the list of values of the objects which are Some.
+        /// Filters a sequence of OptionF objects and returns the list of values of the objects which are Some (Linq Where).
         /// </summary>
-        public static IEnumerable<T> WhereSome<T>(this IEnumerable<OptionF<T>> list)
+        public static IEnumerable<T> FilterSome<T>(this IEnumerable<OptionF<T>> list)
         {
-            return list.Where(a => a.IsSome).Select(a => a.Value);
+            return list.Filter(a => a.IsSome).Map(a => a.Value);
         }
 
         /// <summary>
