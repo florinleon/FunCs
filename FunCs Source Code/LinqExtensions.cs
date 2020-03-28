@@ -15,12 +15,6 @@ namespace FunCs
             return source.Select(selector);
         }
 
-//https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable.select?view=netframework-4.8#definition
-//public static System.Collections.Generic.IEnumerable<TResult> Select<TSource,TResult> (this System.Collections.Generic.IEnumerable<TSource> source, 
-//	Func<TSource,int,TResult> selector);
-//Select<TSource,TResult>(IEnumerable<TSource>, Func<TSource,Int32,TResult>)
-//Select<TSource,TResult>(IEnumerable<TSource>, Func<TSource,TResult>)
-
         /// <summary>
         /// Projects each element of a sequence into a new form by incorporating the element's index (Linq Select).
         /// </summary>
@@ -99,6 +93,67 @@ namespace FunCs
         public static IEnumerable<TSource> Filter<TSource>(this IEnumerable<TSource> source, Func<TSource, int, bool> predicate)
         {
             return source.Where(predicate);
+        }
+
+        /// <summary>
+        /// Searches for an element and returns the zero-based index of the first occurrence within the collection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static int FindIndex<T>(this IEnumerable<T> source, T item)
+        {
+            if (!source.Contains(item))
+                return -1;
+
+            var array = source.ToArray();
+            for (int i = 0; i < array.Length; i++)
+                if (array[i].Equals(item))
+                    return i;
+
+            return -1;
+        }
+
+        /// <summary>
+        /// Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence within the collection.
+        /// </summary>
+        public static int FindIndex<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        {
+            var array = source.ToArray();
+            for (int i = 0; i < array.Length; i++)
+                if (predicate(array[i]))
+                    return i;
+
+            return -1;
+        }
+
+        /// <summary>
+        /// Searches for an element that matches the conditions defined by the specified predicate, and returns the first occurrence within the collection.
+        /// </summary>
+        public static T Find<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        {
+            var array = source.ToArray();
+            for (int i = 0; i < array.Length; i++)
+                if (predicate(array[i]))
+                    return array[i];
+
+            throw new Exception("Item not found.");
+        }
+
+        /// <summary>
+        /// Composes the first function f with the second function g: f.To(g) returns a new function h(x) = g(f(x)).
+        /// </summary>
+        public static Func<T1, T3> To<T1, T2, T3>(this Func<T1, T2> f, Func<T2, T3> g)
+        {
+            return x => g(f(x));
+        }
+
+        private static IEnumerable<T> InitInfinite<T>(Func<int, T> f)
+        {
+            int n = 0;
+            while (true)
+                yield return f(n++);
         }
     }
 }

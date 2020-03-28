@@ -133,6 +133,30 @@
             Filters a sequence of values based on a predicate. Each element's index is used in the logic of the predicate function (Linq Where).
             </summary>
         </member>
+        <member name="M:FunCs.LinqExtensions.FindIndex``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            Searches for an element and returns the zero-based index of the first occurrence within the collection.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FunCs.LinqExtensions.FindIndex``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence within the collection.
+            </summary>
+        </member>
+        <member name="M:FunCs.LinqExtensions.Find``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate, and returns the first occurrence within the collection.
+            </summary>
+        </member>
+        <member name="M:FunCs.LinqExtensions.To``3(System.Func{``0,``1},System.Func{``1,``2})">
+            <summary>
+            Composes the first function f with the second function g: f.To(g) returns a new function h(x) = g(f(x)).
+            </summary>
+        </member>
         <member name="M:FunCs.ListF.ToIntEnumF(System.String)">
             <summary>
             Converts a string that represents a list of integers into the corresponding IEnumerable(int).
