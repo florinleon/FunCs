@@ -97,11 +97,8 @@ namespace FunCs
 
         /// <summary>
         /// Searches for an element and returns the zero-based index of the first occurrence within the collection.
+        /// It returns -1 if no such element exists.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <param name="item"></param>
-        /// <returns></returns>
         public static int FindIndex<T>(this IEnumerable<T> source, T item)
         {
             if (!source.Contains(item))
@@ -117,6 +114,7 @@ namespace FunCs
 
         /// <summary>
         /// Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence within the collection.
+        /// It returns -1 if no such element exists.
         /// </summary>
         public static int FindIndex<T>(this IEnumerable<T> source, Func<T, bool> predicate)
         {
@@ -130,6 +128,7 @@ namespace FunCs
 
         /// <summary>
         /// Searches for an element that matches the conditions defined by the specified predicate, and returns the first occurrence within the collection.
+        /// It throws an exception if no such element exists.
         /// </summary>
         public static T Find<T>(this IEnumerable<T> source, Func<T, bool> predicate)
         {
@@ -149,6 +148,10 @@ namespace FunCs
             return x => g(f(x));
         }
 
+        /// <summary>
+        /// Defines an infinite sequence based on a function that generates each element from the index of the element.
+        /// Using lazy evaluation, elements are created when needed for precessing.
+        /// </summary>
         private static IEnumerable<T> InitInfinite<T>(Func<int, T> f)
         {
             int n = 0;
