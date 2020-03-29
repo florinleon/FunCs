@@ -77,6 +77,12 @@
             Returns true if the option does not contain a value and false otherwise.
             </summary>
         </member>
+        <member name="M:FunCs.InfiniteF.Define``1(System.Func{System.Int32,``0})">
+            <summary>
+            Defines an infinite sequence based on a function that generates each element from the index of the element.
+            Using lazy evaluation, elements are created when needed for precessing.
+            </summary>
+        </member>
         <member name="M:FunCs.LinqExtensions.Map``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
             <summary>
             Projects each element of a sequence into a new form (Linq Select).
@@ -154,12 +160,6 @@
         <member name="M:FunCs.LinqExtensions.To``3(System.Func{``0,``1},System.Func{``1,``2})">
             <summary>
             Composes the first function f with the second function g: f.To(g) returns a new function h(x) = g(f(x)).
-            </summary>
-        </member>
-        <member name="M:FunCs.LinqExtensions.InitInfinite``1(System.Func{System.Int32,``0})">
-            <summary>
-            Defines an infinite sequence based on a function that generates each element from the index of the element.
-            Using lazy evaluation, elements are created when needed for precessing.
             </summary>
         </member>
         <member name="M:FunCs.ListF.ToIntEnumF(System.String)">

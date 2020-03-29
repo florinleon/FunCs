@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="ExpertMatch.cs" />
     <Compile Include="ExpertMatchOption.cs" />
+    <Compile Include="InfiniteF.cs" />
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="ListF.cs" />
     <Compile Include="Option.cs" />
