@@ -20,7 +20,10 @@ using System.Text;
 
 namespace FunCs
 {
-    public static class ListF // extension methods for string and IEnumerable
+    /// <summary>
+    /// The class with extension methods for string and IEnumerable.
+    /// </summary>
+    public static class ListF
     {
         /// <summary>
         /// Converts a string that represents a list of integers into the corresponding IEnumerable(int).

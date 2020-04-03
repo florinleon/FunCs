@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace FunCs
 {
+    /// <summary>
+    /// The class with Linq extensions such as Map, Reduce, Bind, Filter, Find and FindIndex.
+    /// </summary>
     public static class LinqExtensions
     {
         /// <summary>

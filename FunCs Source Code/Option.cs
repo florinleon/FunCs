@@ -20,7 +20,7 @@ using System.Linq;
 namespace FunCs
 {
     /// <summary>
-    /// The option type is used when an actual value may not exist. An option has an underlying type and can hold a value of that type, i.e. Some(value), or it may contain no value, i.e. None.
+    /// The class defining the option type, which is used when an actual value may not exist. An option has an underlying type and can hold a value of that type, i.e. Some(value), or it may contain no value, i.e. None.
     /// </summary>
     public class OptionF<T> : IEnumerable<T>
     {
@@ -160,6 +160,10 @@ namespace FunCs
         }
     }
 
+
+    /// <summary>
+    /// The class with extension methods for options.
+    /// </summary>
     public static class OptionExtensionMethods
     {
         /// <summary>
