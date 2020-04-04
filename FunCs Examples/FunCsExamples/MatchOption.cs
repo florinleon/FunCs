@@ -51,11 +51,11 @@ namespace FunCsExamples
             WriteLine(a2);
 
             var em = new ExpertMatchF<Age>(a1);
-            if (em.MatchOptionSome(out Age a))
+            if (em.MatchSome(out Age a))
                 WriteLine($"Is some: {a}");
 
             em = new ExpertMatchF<Age>(a2);
-            if (em.MatchOptionNone())
+            if (em.MatchNone())
                 WriteLine("Is none");
         }
 

@@ -12,9 +12,9 @@
  *                                                                        *
  **************************************************************************/
 
+using FunCs;
 using System;
 using System.Linq;
-using FunCs;
 using static System.Console;
 using static System.Linq.Enumerable;
 

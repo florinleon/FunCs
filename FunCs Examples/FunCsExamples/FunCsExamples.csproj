@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B7CE7F96-5A12-4059-A0DD-F679793E23DC}</ProjectGuid>
+    <ProjectGuid>{C8C3DF2A-CC60-431B-9A4B-A9DEC5C757C8}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>FunCsExamples</RootNamespace>
     <AssemblyName>FunCsExamples</AssemblyName>
@@ -33,10 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FunCs, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\FunCs Dll\FunCs.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,8 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MatchList.cs" />
-    <Compile Include="MatchMultiple.cs" />
+    <Compile Include="MatchPatterns.cs" />
+    <Compile Include="LinqExt.cs" />
     <Compile Include="MatchOption.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
@@ -56,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FunCs\FunCs.csproj">
+      <Project>{3d5dc83e-baf5-4bec-82fc-663c8ad72a30}</Project>
+      <Name>FunCs</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

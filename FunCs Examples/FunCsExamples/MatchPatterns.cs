@@ -1,30 +1,78 @@
-﻿/**************************************************************************
- *                                                                        *
- *  Description: FunCs Examples                                           *
- *  Website:     https://github.com/florinleon/FunCs                      *
- *  Copyright:   (c) 2019, Florin Leon                                    *
- *                                                                        *
- *  This code and information is provided "as is" without warranty of     *
- *  any kind, either expressed or implied, including but not limited      *
- *  to the implied warranties of merchantability or fitness for a         *
- *  particular purpose. You are free to use this source code in your      *
- *  applications as long as the original copyright notice is included.    *
- *                                                                        *
- **************************************************************************/
-
+﻿using FunCs;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using FunCs;
 using static System.Console;
 using static System.Linq.Enumerable;
 
 namespace FunCsExamples
 {
-    public class MatchMultiple
+    public class PatternMatchingExamples
     {
-        public static void Ex1Kinship()
+        public static void Permutations()
+        {
+            var facts = new List<string> { "1", "2", "3" };
+            var em = new ExpertMatchF(facts);
+            var patterns = new List<string> { "?o1", "?o2", "?o3" };
+            var constraint = "(and (neq ?o1 ?o2) (neq ?o1 ?o3) (neq ?o2 ?o3))";
+
+            em.Match(patterns, constraint, out var matches);
+            foreach (var m in matches)
+                WriteLine($"{m["?o1"]} - {m["?o2"]} - {m["?o3"]}");
+        }
+
+        public static void Combinations()
+        {
+            // Combinations(5,2)
+
+            var em = new ExpertMatchF("1 2 3 4 5");   // "[" and "]" are not necessary
+            var patterns = new List<string> { "$? ?x $? ?y $?" };
+
+            em.Match(patterns, out var matchList);
+            foreach (var m in matchList)
+                WriteLine($"{m["?x"]} - {m["?y"]}");
+        }
+
+        private static int SumListRec(IEnumerable<int> list)
+        {
+            if (list.Count() == 0)
+                return 0;
+            if (list.Count() == 1)
+                return list.First();
+
+            list.MatchHeadTailF(out int head, out var tail);
+            return head + SumListRec(tail);
+        }
+
+        public static void SumList()
+        {
+            var list = "[ 1 2 3 4 5 ]".ToIntEnumF();
+            int sum = SumListRec(list);
+            WriteLine($"{sum}");
+        }
+
+        public static void MatchList()
+        {
+            var list = "[ 1 2 3 4 5 6 7 8 9 10 ]".ToStringEnumF();
+            list.MatchF("?head ? $?rest ? ?last", out var head, out var rest, out var last);
+
+            WriteLine(head);
+            WriteLine(rest);
+            WriteLine(last);
+
+            WriteLine("=================================");
+
+            list.MatchF("?x $? ?y", out Dictionary<string, string> matches);
+            WriteLine($"{matches["?x"]} {matches["?y"]}");
+
+            WriteLine("=================================");
+
+            list.MatchF("?x ?y $?w ?z", out var x, out var y, out var w, out var z);
+            WriteLine($"{x} - {y} - {w} - {z}");
+        }
+
+        public static void MatchGeneral1()
         {
             // parents and children
 
@@ -32,7 +80,18 @@ namespace FunCsExamples
             var lines = sr.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             sr.Close();
 
-            var em = new ExpertMatchF(lines.ToList<string>());
+            var em = new ExpertMatchF(lines.ToList());
+
+            // find mother of a specific child
+            // mother Penelope Arthur
+
+            string child = "Arthur";
+            em.MatchVar($"mother ?m {child}", out var mother);
+            WriteLine(mother);
+
+            WriteLine("\r\n=========================\r\n");
+
+            // parents
 
             var patterns = new List<string>
             {
@@ -40,31 +99,31 @@ namespace FunCsExamples
                 "mother ?m ?c"
             };
 
-            if (em.MatchMultiple(patterns, out var matches))
-            {
-                foreach (var m in matches)
-                    WriteLine($"Father {m["?f"]}, mother {m["?m"]}, child {m["?c"]}");
-            }
+            em.Match(patterns, out var matches);
+            foreach (var m in matches)
+                WriteLine($"Father {m["?f"]}, mother {m["?m"]}, child {m["?c"]}");
 
             WriteLine("\r\n=========================\r\n");
 
             // grandfathers and grandchildren
 
-            patterns.Clear();
-            patterns.Add("father ?g ?p");
-            patterns.Add("?r ?p ?c");
+            patterns = new List<string>
+            {
+                "father ?g ?p",
+                "?r ?p ?c" // ?r = relation
+            };
 
             var constraint = "(or (eq ?r father) (eq ?r mother))";
 
-            if (em.MatchMultiple(patterns, constraint, out matches))
-            {
-                foreach (var m in matches)
-                    WriteLine($"Grandfather {m["?g"]}, {m["?r"]} {m["?p"]}, child {m["?c"]}");
-            }
+            em.Match(patterns, constraint, out matches);
+            foreach (var m in matches)
+                WriteLine($"Grandfather {m["?g"]}, {m["?r"]} {m["?p"]}, child {m["?c"]}");
         }
 
-        public static void Ex2Cousins()
+        public static void MatchGeneral2()
         {
+            // cousins
+
             var facts = new List<string>
             {
                 "parent Liviu children Vlad Maria Nelu",
@@ -87,16 +146,14 @@ namespace FunCsExamples
 
             string constraint = "(neq ?p1 ?p2)"; // not equal
 
-            if (em.MatchMultiple(patterns, constraint, out var matches))
-            {
-                foreach (var m in matches)
-                    Write($"{m["?c"]} ");
-            }
+            em.Match(patterns, constraint, out var matches);
+            foreach (var m in matches)
+                Write($"{m["?c"]} ");
 
             WriteLine();
         }
 
-        public static void Ex3Queens4()
+        public static void MatchGeneralQueens4()
         {
             var em = new ExpertMatchF("n 1 2 3 4");
 
@@ -106,13 +163,11 @@ namespace FunCsExamples
                 "n $? ?col $?"
             };
 
-            var queens = new List<string>();
+            List<string> queens = new List<string>();
 
-            if (em.MatchMultiple(patterns, out var matchList))
-            {
-                foreach (var m in matchList)
-                    queens.Add($"queen {m["?row"]} {m["?col"]}");
-            }
+            em.Match(patterns, out var matchList);
+            foreach (var m in matchList)
+                queens.Add($"queen {m["?row"]} {m["?col"]}");
 
             em = new ExpertMatchF(queens);
 
@@ -139,14 +194,12 @@ namespace FunCsExamples
                 "(neq ?c3 ?c4)" +
                 ")";
 
-            if (em.MatchMultiple(patterns, constraints, out matchList))
-            {
-                foreach (var m in matchList)
-                    WriteLine($"{m["?c1"]} {m["?c2"]} {m["?c3"]} {m["?c4"]}");
-            }
+            em.Match(patterns, constraints, out matchList);
+            foreach (var m in matchList)
+                WriteLine($"{m["?c1"]} {m["?c2"]} {m["?c3"]} {m["?c4"]}");
         }
 
-        public static void Ex4Queens8()
+        public static void MatchGeneralQueens8()
         {
             var em = new ExpertMatchF("n 1 2 3 4 5 6 7 8");
 
@@ -156,13 +209,11 @@ namespace FunCsExamples
                 "n $? ?col $?"
             };
 
-            var queens = new List<string>();
+            List<string> queens = new List<string>();
 
-            if (em.MatchMultiple(patterns, out var matchList))
-            {
-                foreach (var m in matchList)
-                    queens.Add($"queen {m["?row"]} {m["?col"]}");
-            }
+            em.Match(patterns, out var matchList);
+            foreach (var m in matchList)
+                queens.Add($"queen {m["?row"]} {m["?col"]}");
 
             em = new ExpertMatchF(queens);
 
@@ -250,17 +301,16 @@ namespace FunCsExamples
                 "(neq ?c7 ?c8)" +
                 ")";
 
-            if (em.MatchMultiple(patterns, constraints, out matchList))
-            {
-                List<string> solutions = new List<string>();
-                foreach (var m in matchList)
-                    solutions.Add($"{m["?c1"]} {m["?c2"]} {m["?c3"]} {m["?c4"]} {m["?c5"]} {m["?c6"]} {m["?c7"]} {m["?c8"]}");
+            em.Match(patterns, constraints, out matchList);
 
-                solutions.Sort();
+            List<string> solutions = new List<string>();
+            foreach (var m in matchList)
+                solutions.Add($"{m["?c1"]} {m["?c2"]} {m["?c3"]} {m["?c4"]} {m["?c5"]} {m["?c6"]} {m["?c7"]} {m["?c8"]}");
 
-                foreach (string s in solutions)
-                    WriteLine(s);
-            }
+            solutions.Sort();
+
+            foreach (string s in solutions)
+                WriteLine(s);
         }
     }
 }

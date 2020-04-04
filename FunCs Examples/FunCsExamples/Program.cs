@@ -20,13 +20,18 @@ namespace FunCsExamples
     {
         private static void Main(string[] args)
         {
-            MatchList.Ex1(); WriteLine("\r\n");
-            MatchList.Ex2ExtensionMethods(); WriteLine("\r\n");
+            PatternMatchingExamples.Permutations();
+            PatternMatchingExamples.Combinations();
+            PatternMatchingExamples.SumList();
+            PatternMatchingExamples.MatchList();
 
-            MatchMultiple.Ex1Kinship(); WriteLine("\r\n");
-            MatchMultiple.Ex2Cousins(); WriteLine("\r\n");
-            MatchMultiple.Ex3Queens4(); WriteLine("\r\n");
-            //MatchMultiple.Ex4Queens8(); WriteLine("\r\n");
+            PatternMatchingExamples.MatchGeneral1();
+            PatternMatchingExamples.MatchGeneral2();
+            PatternMatchingExamples.MatchGeneralQueens4();
+            PatternMatchingExamples.MatchGeneralQueens8();
+
+            LinqExt.Ex1();
+            LinqExt.Ex2();
 
             Options.Ex1SomeNone(); WriteLine("\r\n");
             Options.Ex2List(); WriteLine("\r\n");
