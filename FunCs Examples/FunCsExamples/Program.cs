@@ -25,8 +25,7 @@ namespace FunCsExamples
             PatternMatchingExamples.SumList();
             PatternMatchingExamples.MatchList();
 
-            PatternMatchingExamples.MatchGeneral1();
-            PatternMatchingExamples.MatchGeneral2();
+            PatternMatchingExamples.MatchGeneral();
             PatternMatchingExamples.MatchGeneralQueens4();
             PatternMatchingExamples.MatchGeneralQueens8();
 

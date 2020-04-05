@@ -72,7 +72,7 @@ namespace FunCsExamples
             WriteLine($"{x} - {y} - {w} - {z}");
         }
 
-        public static void MatchGeneral1()
+        public static void MatchGeneral()
         {
             // parents and children
 
@@ -118,39 +118,6 @@ namespace FunCsExamples
             em.Match(patterns, constraint, out matches);
             foreach (var m in matches)
                 WriteLine($"Grandfather {m["?g"]}, {m["?r"]} {m["?p"]}, child {m["?c"]}");
-        }
-
-        public static void MatchGeneral2()
-        {
-            // cousins
-
-            var facts = new List<string>
-            {
-                "parent Liviu children Vlad Maria Nelu",
-                "parent Vlad children Oana Mircea",
-                "parent Maria children Dan",
-                "parent Nelu children Paul Radu Sorin"
-            };
-
-            var em = new ExpertMatchF(facts);
-
-            string searchFor = "Oana"; // search for the cousins of Oana
-
-            List<string> patterns = new List<string>
-            {
-                $"parent ?p1 children $? {searchFor} $?",
-                 "parent ?g children $? ?p1 $?",
-                 "parent ?g children $? ?p2 $?",
-                 "parent ?p2 children $? ?c $?"
-            };
-
-            string constraint = "(neq ?p1 ?p2)"; // not equal
-
-            em.Match(patterns, constraint, out var matches);
-            foreach (var m in matches)
-                Write($"{m["?c"]} ");
-
-            WriteLine();
         }
 
         public static void MatchGeneralQueens4()
